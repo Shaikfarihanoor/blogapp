@@ -23,14 +23,14 @@ authorApp.post("/article", expressAsyncHandler(async (req, res) => {
 
 
 //read all articles
-authorApp.get('/articles',requireAuth({signInUrl:"unauthorized"}) ,expressAsyncHandler(async (req, res) => {
+authorApp.get('/articles',expressAsyncHandler(async (req, res) => {
     //read all articles from db
     const listOfArticles = await Article.find({ isArticleActive: true });
     res.status(200).send({ message: "articles", payload: listOfArticles })
 }))
 
 authorApp.get('/unauthorized',(req,res)=>{
-    res.send({message:"Unauthorized request"})
+    res.status(200).send({ message: "articles", payload: listOfArticles })
 })
 
 //modify an article by article id
